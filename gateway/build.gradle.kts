@@ -2,8 +2,6 @@ plugins {
     id("buildlogic.java-conventions")
 }
 
-extra["springCloudVersion"] = "2024.0.0"
-
 dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
 
@@ -13,6 +11,6 @@ dependencies {
 
 dependencyManagement {
     imports {
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${libs.versions.springCloudVersion.get()}")
     }
 }

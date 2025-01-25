@@ -7,3 +7,5 @@
 
 rootProject.name = "ChatApp"
 include(":gateway")
+include(":common")
+include(":discovery")
