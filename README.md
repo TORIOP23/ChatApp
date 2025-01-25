@@ -1,2 +1,5 @@
-# ChatApp
-Chat Application
+# Chat Application
+
+## Prerequisites
+
+* Java 21
