@@ -1,0 +1,9 @@
+# include other compose files
+include:
+  - zipkin.yaml
+  - monitoring.yaml
+  - services.yaml
+networks:
+  application:
+    name: chat-application
+    driver: bridge
