@@ -1,0 +1,110 @@
+server:
+  port: 83
+
+log:
+  app-name: kafka-to-elastic-service
+
+kafka-to-elastic-service:
+  consumer:
+    topic:
+      user: USER_REGISTER_KAFKA_TOPIC
+
+elastic-index:
+  userIndex: users
+
+elastic-config:
+  connectionUrl: localhost:9200
+  connectionTimeoutMs: 5000
+  socketTimeoutMs: 30000
+  password: password
+  username: elastic
+
+spring:
+  zipkin:
+    base-url: http://localhost:9411/
+    sender:
+      type: web
+    enabled: true
+    locator:
+      discovery:
+        enabled: true
+    discovery-client-enabled: true
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: kafka-to-elasticsearch-service
+  kafka:
+    bootstrap-servers: http://localhost:19092
+    consumer:
+      group-id: kafka-to-elastic-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    properties:
+      schema.registry.url: http://localhost:8081
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+  elasticsearch:
+    #    uris: http://localhost:9200
+    password: password
+    username: elastic
+
+kafka-config:
+  bootstrap-servers: localhost:19092, localhost:29092, localhost:39092
+  schema-registry-url-key: schema.registry.url
+  schema-registry-url: http://localhost:8081
+  topic-name: 'user-to-elastic'
+  topic-names-to-create:
+    - 'user-to-elastic'
+  numOfPartitions: 2
+  replicationFactor: 3
+
+retry-config:
+  initialIntervalMs: 1000
+  maxIntervalMs: 10000
+  multiplier: 2.0
+  maxAttempts: 3
+  sleepTimeMs: 2000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 2
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure.include: health, prometheus, gateway
+      path-mapping.prometheus: metrics
+  endpoint:
+    health:
+      show-details: always
+    prometheus:
+      cache.time-to-live: 1ms
+    gateway:
+      enabled: true
+
+kafka-consumer-config:
+  key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+  consumer-group-id: twitter-topic-consumer
+  auto-offset-reset: earliest
+  specific-avro-reader-key: specific.avro.reader
+  specific-avro-reader: true
+  batch-listener: true
+  auto-startup: true
+  concurrency-level: 3
+  session-timeout-ms: 10000
+  heartbeat-interval-ms: 3000
+  max-poll-interval-ms: 300000
+  max-poll-records: 500
+  max-partition-fetch-bytes-default: 1048576
+  max-partition-fetch-bytes-boost-factor: 1
+  poll-timeout-ms: 150

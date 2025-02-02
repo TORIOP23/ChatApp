@@ -8,6 +8,7 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j")
     implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
 
     // Monitoring
     implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -22,14 +23,14 @@ dependencies {
     implementation("com.github.ben-manes.caffeine:caffeine") // In-memory cache
 
     // JWT
-    implementation("io.jsonwebtoken:jjwt-api")
-    implementation("io.jsonwebtoken:jjwt-impl")
-    implementation("io.jsonwebtoken:jjwt-jackson")
+    implementation(libs.bundles.jjwt)
 
     implementation(project(":common"))
 
     testImplementation("io.projectreactor:reactor-test")
 }
+
+description = "gateway-service"
 
 dependencyManagement {
     imports {

@@ -1,0 +1,10 @@
+{"namespace": "com.chat.kafka.avro.model",
+  "type": "record",
+  "name": "UserAvroModel",
+  "fields": [
+    {"name": "id", "type": "long"},
+    {"name": "name", "type": ["string"]},
+    {"name": "username", "type": ["string"]},
+    {"name": "createdAt", "type": ["null", "long"], "logicalType": ["null", "date"]}
+  ]
+}

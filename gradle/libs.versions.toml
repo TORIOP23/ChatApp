@@ -3,6 +3,21 @@
 
 [versions]
 springCloudVersion = "2024.0.0"
+jjwt = "0.12.6"
+lombok = "1.18.36"
+spring-retry = "2.0.3"
+spring-aspects = "6.1.5"
 
-[plugins]
+
+[libraries]
+jjwt-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
+jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
+jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+spring-retry = { module = "org.springframework.retry:spring-retry", version.ref = "spring-retry" }
+spring-aspects = { module = "org.springframework:spring-aspects", version.ref = "spring-aspects" }
+
+[bundles]
+jjwt = ["jjwt-api", "jjwt-impl", "jjwt-jackson"]
+
 
