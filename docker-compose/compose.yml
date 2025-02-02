@@ -1,8 +1,9 @@
 # include other compose files
 include:
-  - zipkin.yaml
-  - monitoring.yaml
-  - services.yaml
+  - zipkin.yml
+  - monitoring.yml
+  - services.yml
+  - redis_cluster.yml
 networks:
   application:
     name: chat-application

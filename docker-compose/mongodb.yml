@@ -1,0 +1,12 @@
+services:
+  mongo:
+    image: mongo
+    restart: on-failure
+    container_name: chat-db
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    networks:
+      - ${GLOBAL_NETWORK:-chat-db}
