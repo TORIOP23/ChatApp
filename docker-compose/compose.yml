@@ -1,9 +1,14 @@
 # include other compose files
 include:
-  - zipkin.yml
-  - monitoring.yml
-  - services.yml
-  - redis_cluster.yml
+  #  - zipkin.yml
+  #  - monitoring.yml
+  #  - services.yml
+  #  - redis_cluster.yml
+  #  - elastic_cluster.yml
+  #  - kafka_cluster.yml
+  - mongodb.yml
+  - postgresql.yml
+  - rabbitmq.yml
 networks:
   application:
     name: chat-application

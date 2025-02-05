@@ -1,9 +1,8 @@
 services:
   discovery-service:
     build:
-      context: ../
-      dockerfile: ./discovery-service/Dockerfile
-    container_name: discovery-service
+      context: ../discovery-service
+      dockerfile: ../docker-compose/Dockerfile
     ports:
       - "8761:8761"
     volumes:
@@ -18,9 +17,8 @@ services:
       - ${GLOBAL_NETWORK:-services}
   gateway-service:
     build:
-      context: ../
-      dockerfile: ./gateway-service/Dockerfile
-    container_name: gateway-service
+      context: ../gateway-service
+      dockerfile: ../docker-compose/Dockerfile
     ports:
       - "9092:9092"
     links:
